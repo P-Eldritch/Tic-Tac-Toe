@@ -108,4 +108,4 @@ document.addEventListener('DOMContentLoaded', function() {
 		circles[i].textContent = "";
 		}
 	}
-}
+});
