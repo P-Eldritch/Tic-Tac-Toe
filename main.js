@@ -12,9 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	* binary combos converted to decimal and stored in winBits array: */
 	const winBits = [448,292,273,146,84,73,56,7]; 
 
+	//preparing parameters for a game
 	reset();
 
-	//resets board for a new game when clicked
+/* ------------ADDING EVENTS---------------------*/
+
+	//reset button event
 	resetButton.addEventListener("click", function(){
 		reset();
 	});
@@ -25,10 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (!win && !this.classList.contains("selected")){
 			selectCheck(this);
 			collectArray(i);
+			checkWin(xs, os);
 		}
-		checkWin(xs, os);
 	})
 	}
+
+/*-------------FUNCTION DECLARATIONS-------------*/
 
 	function selectCheck(param) {
 			counter = counter +1;
@@ -46,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	//tracks whetcher is X move, o O move
+	//tracks whether is X move, o O move
 	function circlesText(currentField){
 		if (current === null || prevMove === oUnit) {
 			current = xUnit;
@@ -84,7 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		current = null;
 		counter = null;
 		win = false;
-		removeCircleText();
 		display.textContent = "tic tac toe";
 	}
 
@@ -97,15 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	 //removes class 'selected' from function parameters
+	 //removes X and O markings from circles
 	function removeSelected(selectedElements) {
 		for (let i = 0; i<selectedElements.length; i++) {
+			selectedElements[i].textContent = "";
 			selectedElements[i].classList.remove("selected");
-		}
-	}
-	//removes X and O markings from circles
-	function removeCircleText() {
-		for (let i = 0; i<circles.length; i++) {
-		circles[i].textContent = "";
 		}
 	}
 });
